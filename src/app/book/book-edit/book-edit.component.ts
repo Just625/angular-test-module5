@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {BookService} from '../../service/book.service';
 import {ActivatedRoute, ParamMap} from '@angular/router';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Book} from '../../model/book';
 import {NotificationService} from '../../service/notification.service';
 
@@ -33,19 +33,21 @@ export class BookEditComponent implements OnInit {
   getBook(id: number) {
     this.bookService.findById(id).subscribe(book => {
       this.bookForm = new FormGroup({
-        title: new FormControl(book.title),
-        author: new FormControl(book.author),
+        title: new FormControl(book.title, [Validators.required]),
+        author: new FormControl(book.author, [Validators.required]),
         description: new FormControl(book.description)
       });
     });
   }
 
   editBook(id: number) {
-    const book: Book = this.bookForm.value;
-    this.bookService.updateBook(id, book).subscribe(() => {
-      this.notificationService.showSuccessMsg('Book updated!');
-    }, e => {
-      console.log(e);
-    });
+    if (this.bookForm.valid) {
+      const book: Book = this.bookForm.value;
+      this.bookService.updateBook(id, book).subscribe(() => {
+        this.notificationService.showSuccessMsg('Book updated!');
+      }, e => {
+        console.log(e);
+      });
+    }
   }
 }

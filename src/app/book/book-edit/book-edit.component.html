@@ -5,10 +5,16 @@
     <tr>
       <td>Name:</td>
       <td><input type="text" formControlName="title"></td>
+      <td *ngIf="bookForm.get('title').touched ">
+        <p style="color:red" *ngIf="bookForm.get('title').errors?.required">Title required</p>
+      </td>
     </tr>
     <tr>
       <td>Author:</td>
       <td><input type="text" formControlName="author"></td>
+      <td *ngIf="bookForm.get('author').touched ">
+        <p style="color:red" *ngIf="bookForm.get('author').errors?.required">Author required</p>
+      </td>
     </tr>
     <tr>
       <td>Description:</td>
