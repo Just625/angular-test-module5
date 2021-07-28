@@ -1,0 +1,18 @@
+<h3>Delete book</h3>
+<table>
+  <tr>
+    <td>Name:</td>
+    <td>{{book.title}}</td>
+  </tr>
+  <tr>
+    <td>Author:</td>
+    <td>{{book.author}}</td>
+  </tr>
+  <tr>
+    <td>Description:</td>
+    <td>{{book.description}}</td>
+  </tr>
+</table>
+<button (click)="deleteBook(book.id)">Delete</button>
+<button><a routerLink="/books/list">Exit</a></button>
+
