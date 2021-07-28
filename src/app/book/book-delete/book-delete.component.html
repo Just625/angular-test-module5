@@ -12,7 +12,12 @@
     <td>Description:</td>
     <td>{{book.description}}</td>
   </tr>
+  <tr>
+    <td><button  type="button" class="btn btn-danger" (click)="deleteBook(book.id)">Delete</button></td>
+    <td>
+      <button type="button" class="btn btn-secondary"><a style="text-decoration: none; color:white"routerLink="/books/list">Exit</a></button></td>
+  </tr>
 </table>
-<button (click)="deleteBook(book.id)">Delete</button>
-<button><a routerLink="/books/list">Exit</a></button>
+
+
 
